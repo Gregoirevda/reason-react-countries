@@ -2,7 +2,7 @@
 
 var Curry = require("bs-platform/lib/js/curry.js");
 var React = require("react");
-var CountrySelect$ReasonReactExamples = require("./CountrySelect.bs.js");
+var CountrySelect$CountriesList = require("./CountrySelect.bs.js");
 
 function App(Props) {
   var match = React.useState((function () {
@@ -18,7 +18,7 @@ function App(Props) {
                 alignItems: "center",
                 justifyContent: "center"
               }
-            }, React.createElement(CountrySelect$ReasonReactExamples.make, {
+            }, React.createElement(CountrySelect$CountriesList.make, {
                   className: "test",
                   country: country,
                   onChange: (function (newCountry) {

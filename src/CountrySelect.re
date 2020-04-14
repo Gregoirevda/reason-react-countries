@@ -1,5 +1,4 @@
-[@bs.val] external require: string => string = "";
-require("./sprite.css");
+[%%raw "require('./sprite.css')"]
 
 module SearchIcon {
   [@react.component]
@@ -70,7 +69,7 @@ let make = (~className, ~country, ~onChange) => {
 
   React.useEffect2(() => {
       if(!showSelect && Js.Array.length(countries) > 0 && Js.Array.length(searchResult) > batch_countries_amount) {
-        setSearchResult(searchResult => Js.Array.slice(~start=0, ~end_=batch_countries_amount, countries));
+        setSearchResult(_ => Js.Array.slice(~start=0, ~end_=batch_countries_amount, countries));
         setBatchCountriesCurrentIndex(_ => batch_countries_amount)
       }
       if(showSelect && Js.Array.length(countries) > 0 && batchCountriesCurrentIndex < Js.Array.length(countries)) {
@@ -110,6 +109,7 @@ let make = (~className, ~country, ~onChange) => {
       <DropIcon up={!showSelect} />
     </div>
     {showSelect ? <BsReactSelect.Select 
+        className={className}
         autoFocus={true}
         value={internalCountry} 
         onChange={newCountry => {
@@ -126,7 +126,7 @@ let make = (~className, ~country, ~onChange) => {
         components={components}
         hideSelectedOptions={false}
         menuIsOpen={true}
-        onBlur={(event) => {
+        onBlur={_event => {
             // TODO remaining bug: when select is shown, clicking on button shows it again, because mouse event propagtes
         //    ReactEvent.Mouse.preventDefault(event);
         //    ReactEvent.Mouse.stopPropagation(event);

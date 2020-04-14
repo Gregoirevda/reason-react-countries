@@ -5,9 +5,10 @@ var React = require("react");
 var ReactDOMRe = require("reason-react/src/ReactDOMRe.js");
 var Caml_option = require("bs-platform/lib/js/caml_option.js");
 var ReactSelect = require("react-select");
-var Api$ReasonReactExamples = require("./Api.bs.js");
+var Api$CountriesList = require("./Api.bs.js");
 
-require("./sprite.css");
+require('./sprite.css')
+;
 
 function CountrySelect$SearchIcon(Props) {
   return React.createElement("i", {
@@ -64,7 +65,7 @@ var customStyles = {
 };
 
 function CountrySelect(Props) {
-  Props.className;
+  var className = Props.className;
   var country = Props.country;
   var onChange = Props.onChange;
   var match = React.useState((function () {
@@ -109,7 +110,7 @@ function CountrySelect(Props) {
     }
   };
   React.useEffect((function () {
-          Api$ReasonReactExamples.Country.getAll(/* () */0).then((function (countries) {
+          Api$CountriesList.Country.getAll(/* () */0).then((function (countries) {
                   Curry._1(setCountries, (function (param) {
                           return countries;
                         }));
@@ -125,7 +126,7 @@ function CountrySelect(Props) {
         }), ([]));
   React.useEffect((function () {
           if (!showSelect && countries.length > 0 && searchResult.length > 10) {
-            Curry._1(setSearchResult, (function (searchResult) {
+            Curry._1(setSearchResult, (function (param) {
                     return countries.slice(0, 10);
                   }));
             Curry._1(setBatchCountriesCurrentIndex, (function (param) {
@@ -207,6 +208,7 @@ function CountrySelect(Props) {
                       }),
                     options: searchResult,
                     value: internalCountry,
+                    className: className,
                     isSearchable: true,
                     placeholder: "Search",
                     controlShouldRenderValue: false,
@@ -216,7 +218,7 @@ function CountrySelect(Props) {
                     components: components,
                     hideSelectedOptions: false,
                     menuIsOpen: true,
-                    onBlur: (function ($$event) {
+                    onBlur: (function (_event) {
                         return Curry._1(setShowSelect, (function (param) {
                                       return false;
                                     }));
