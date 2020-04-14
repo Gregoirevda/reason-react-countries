@@ -8,3 +8,5 @@ npm-debug.log
 
 *.swo
 *.swp
+
+*.bs.js
